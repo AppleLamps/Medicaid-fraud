@@ -302,7 +302,7 @@
         }
 
         th {
-            text-align: left;
+            text-align: center;
             padding: 12px 16px;
             font-weight: 600;
             color: var(--muted);
@@ -313,9 +313,15 @@
         }
 
         td {
+            text-align: center;
             padding: 12px 16px;
             border-top: 1px solid var(--border);
             white-space: nowrap;
+        }
+
+        th:first-child,
+        td:first-child {
+            text-align: left;
         }
 
         tr:hover {
@@ -544,8 +550,8 @@
                         <tr>
                             <th>Provider</th>
                             <th>NPI</th>
-                            <th>Peak Claims/Month</th>
-                            <th>Claims/Day</th>
+                            <th class="right">Peak Claims/Month</th>
+                            <th class="right">Claims/Day</th>
                             <th class="right">Total Paid</th>
                             <th class="right">$/Claim</th>
                         </tr>
@@ -608,8 +614,8 @@
                         <tr>
                             <th>Provider</th>
                             <th>NPI</th>
-                            <th>Servicing NPIs</th>
-                            <th>Proxy %</th>
+                            <th class="right">Servicing NPIs</th>
+                            <th class="right">Proxy %</th>
                             <th class="right">Total Paid</th>
                         </tr>
                     </thead>
@@ -664,7 +670,7 @@
                             <th>Provider</th>
                             <th>NPI</th>
                             <th class="right">$/Claim</th>
-                            <th>× Median</th>
+                            <th class="right">× Median</th>
                             <th class="right">Total Paid</th>
                             <th class="right">Claims</th>
                         </tr>
@@ -725,8 +731,8 @@
                         <tr>
                             <th>Provider</th>
                             <th>NPI</th>
-                            <th>HHI</th>
-                            <th>Unique Codes</th>
+                            <th class="right">HHI</th>
+                            <th class="right">Unique Codes</th>
                             <th class="right">Total Paid</th>
                             <th class="right">Claims</th>
                         </tr>
@@ -782,9 +788,9 @@
                         <tr>
                             <th>Provider</th>
                             <th>NPI</th>
-                            <th>CV</th>
-                            <th>Max/Min Ratio</th>
-                            <th>Months Active</th>
+                            <th class="right">CV</th>
+                            <th class="right">Max/Min Ratio</th>
+                            <th class="right">Months Active</th>
                             <th class="right">Total Paid</th>
                         </tr>
                     </thead>
@@ -895,7 +901,7 @@
                             <th>Provider</th>
                             <th>NPI</th>
                             <th>Location</th>
-                            <th>Signals</th>
+                            <th class="right">Signals</th>
                             <th class="right">Total Paid</th>
                             <th>Flags</th>
                         </tr>
@@ -1071,50 +1077,52 @@
             const b = d.benford;
             document.querySelector('#benford-chi .v').textContent = b.chi_sq.toFixed(1);
             document.querySelector('#benford-dev .v').textContent = b.max_dev.toFixed(2) + '%';
-            new Chart(document.getElementById('benfordChart'), {
-                type: 'bar',
-                data: {
-                    labels: b.digits,
-                    datasets: [
-                        {
-                            label: 'Observed %',
-                            data: b.observed,
-                            backgroundColor: 'rgba(244, 63, 94, 0.7)',
-                            borderColor: 'rgba(244, 63, 94, 1)',
-                            borderWidth: 1,
-                            borderRadius: 4,
-                        },
-                        {
-                            label: 'Expected (Benford)',
-                            data: b.expected,
-                            backgroundColor: 'rgba(56, 189, 248, 0.3)',
-                            borderColor: 'rgba(56, 189, 248, 0.8)',
-                            borderWidth: 1,
-                            borderRadius: 4,
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { labels: { color: '#8892a4' } },
-                        title: {
-                            display: true,
-                            text: 'First-Digit Distribution: Observed vs. Benford\'s Law',
-                            color: '#e2e8f0',
-                            font: { size: 14, weight: '600' }
-                        }
+            if (window.Chart) {
+                new Chart(document.getElementById('benfordChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: b.digits,
+                        datasets: [
+                            {
+                                label: 'Observed %',
+                                data: b.observed,
+                                backgroundColor: 'rgba(244, 63, 94, 0.7)',
+                                borderColor: 'rgba(244, 63, 94, 1)',
+                                borderWidth: 1,
+                                borderRadius: 4,
+                            },
+                            {
+                                label: 'Expected (Benford)',
+                                data: b.expected,
+                                backgroundColor: 'rgba(56, 189, 248, 0.3)',
+                                borderColor: 'rgba(56, 189, 248, 0.8)',
+                                borderWidth: 1,
+                                borderRadius: 4,
+                            }
+                        ]
                     },
-                    scales: {
-                        x: { ticks: { color: '#8892a4' }, grid: { color: 'rgba(42,49,64,0.5)' } },
-                        y: {
-                            ticks: { color: '#8892a4', callback: v => v + '%' },
-                            grid: { color: 'rgba(42,49,64,0.5)' },
-                            title: { display: true, text: 'Frequency (%)', color: '#8892a4' }
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { labels: { color: '#8892a4' } },
+                            title: {
+                                display: true,
+                                text: 'First-Digit Distribution: Observed vs. Benford\'s Law',
+                                color: '#e2e8f0',
+                                font: { size: 14, weight: '600' }
+                            }
+                        },
+                        scales: {
+                            x: { ticks: { color: '#8892a4' }, grid: { color: 'rgba(42,49,64,0.5)' } },
+                            y: {
+                                ticks: { color: '#8892a4', callback: v => v + '%' },
+                                grid: { color: 'rgba(42,49,64,0.5)' },
+                                title: { display: true, text: 'Frequency (%)', color: '#8892a4' }
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
 
             // Multi-signal
             const ms = d.multi_signal;
