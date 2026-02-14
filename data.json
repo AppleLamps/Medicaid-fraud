@@ -1,0 +1,1041 @@
+{
+  "overview": {
+    "total_rows": 227083361,
+    "total_paid": 1093562833511.7767,
+    "total_claims": 18825564012,
+    "unique_billing": 617503,
+    "unique_hcpcs": 10881,
+    "min_month": "2018-01",
+    "max_month": "2024-12"
+  },
+  "signal_1_impossible_volume": {
+    "title": "Impossible Billing Volumes",
+    "provider_count": 8138,
+    "total_paid": 501810352147.3301,
+    "pct_of_all": 45.9,
+    "providers": [
+      {
+        "npi": "1366479099",
+        "name": "Unilab Corporation",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 2312690,
+        "daily_claims": 105122,
+        "total_paid": 668499553.8200006,
+        "total_claims": 111637602,
+        "paid_per_claim": 5.99
+      },
+      {
+        "npi": "1225163876",
+        "name": "Southwestern Connecticut Agency On Aging",
+        "specialty": "Case Management",
+        "city": "BRIDGEPORT",
+        "state": "CT",
+        "entity_type": "",
+        "max_monthly_claims": 2075953,
+        "daily_claims": 94362,
+        "total_paid": 33492549.820000004,
+        "total_claims": 9306109,
+        "paid_per_claim": 3.6
+      },
+      {
+        "npi": "1063497451",
+        "name": "Laboratory Corporation Of America Holdings",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 2067915,
+        "daily_claims": 93996,
+        "total_paid": 717466640.8199997,
+        "total_claims": 109455732,
+        "paid_per_claim": 6.55
+      },
+      {
+        "npi": "1699725143",
+        "name": "Modivcare Solutions, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1766354,
+        "daily_claims": 80289,
+        "total_paid": 3093063112.899998,
+        "total_claims": 107716418,
+        "paid_per_claim": 28.71
+      },
+      {
+        "npi": "1538144910",
+        "name": "Laboratory Corporation Of America Holdings",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1637797,
+        "daily_claims": 74445,
+        "total_paid": 1436181704.9100022,
+        "total_claims": 103910314,
+        "paid_per_claim": 13.82
+      },
+      {
+        "npi": "1417262056",
+        "name": "Public Partnerships Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1313559,
+        "daily_claims": 59707,
+        "total_paid": 7177816544.459995,
+        "total_claims": 89773441,
+        "paid_per_claim": 79.95
+      },
+      {
+        "npi": "1376609297",
+        "name": "Tempus Unlimited, Inc.",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1262195,
+        "daily_claims": 57372,
+        "total_paid": 5571605313.000001,
+        "total_claims": 63523750,
+        "paid_per_claim": 87.71
+      },
+      {
+        "npi": "1952347791",
+        "name": "Quest Diagnostics Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1255401,
+        "daily_claims": 57064,
+        "total_paid": 209742563.94999996,
+        "total_claims": 45938450,
+        "paid_per_claim": 4.57
+      },
+      {
+        "npi": "1659352276",
+        "name": "Laboratory Corporation Of America",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1146772,
+        "daily_claims": 52126,
+        "total_paid": 147141937.29000005,
+        "total_claims": 64360026,
+        "paid_per_claim": 2.29
+      },
+      {
+        "npi": "1134277494",
+        "name": "Bioreference Health, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "max_monthly_claims": 1010999,
+        "daily_claims": 45954,
+        "total_paid": 620067105.66,
+        "total_claims": 60790152,
+        "paid_per_claim": 10.2
+      }
+    ]
+  },
+  "signal_2_billing_mills": {
+    "title": "Billing Mills & Proxy Networks",
+    "mill_count": 37615,
+    "pure_proxy_count": 41054,
+    "total_paid": 173269510556.65,
+    "pct_of_all": 15.8,
+    "providers": [
+      {
+        "npi": "1679525919",
+        "name": "The Cleveland Clinic Foundation",
+        "specialty": "General Acute Care Hospital",
+        "city": "CLEVELAND",
+        "state": "OH",
+        "entity_type": "",
+        "num_servicing": 5746,
+        "proxy_pct": 57.5,
+        "total_paid": 863549395.7599999,
+        "total_claims": 16016267
+      },
+      {
+        "npi": "1053688572",
+        "name": "North Shore-Lij Medical Pc",
+        "specialty": "Urology",
+        "city": "GREAT NECK",
+        "state": "NY",
+        "entity_type": "",
+        "num_servicing": 4314,
+        "proxy_pct": 93.2,
+        "total_paid": 387661175.61999995,
+        "total_claims": 5303467
+      },
+      {
+        "npi": "1548343510",
+        "name": "Permanente Medical Group Inc",
+        "specialty": "Internal Medicine",
+        "city": "STOCKTON",
+        "state": "CA",
+        "entity_type": "",
+        "num_servicing": 4040,
+        "proxy_pct": 89.9,
+        "total_paid": 125880919.96000002,
+        "total_claims": 4998449
+      },
+      {
+        "npi": "1104981356",
+        "name": "City Of New York",
+        "specialty": "Local Education Agency (LEA)",
+        "city": "BROOKLYN",
+        "state": "NY",
+        "entity_type": "",
+        "num_servicing": 3530,
+        "proxy_pct": 50.3,
+        "total_paid": 298943537.5600004,
+        "total_claims": 8818063
+      },
+      {
+        "npi": "1962461889",
+        "name": "University Physicians Incorporated",
+        "specialty": "Internal Medicine",
+        "city": "AURORA",
+        "state": "CO",
+        "entity_type": "",
+        "num_servicing": 3168,
+        "proxy_pct": 99.8,
+        "total_paid": 190650224.07000008,
+        "total_claims": 3200864
+      },
+      {
+        "npi": "1427271378",
+        "name": "Aurora Medical Group, Inc.",
+        "specialty": "Nurse Anesthetist, Certified Registered",
+        "city": "MILWAUKEE",
+        "state": "WI",
+        "entity_type": "",
+        "num_servicing": 3094,
+        "proxy_pct": 99.6,
+        "total_paid": 139243287.47999993,
+        "total_claims": 5067639
+      },
+      {
+        "npi": "1063525152",
+        "name": "Montefiore Medical Center",
+        "specialty": "Anesthesiology",
+        "city": "BRONX",
+        "state": "NY",
+        "entity_type": "",
+        "num_servicing": 3076,
+        "proxy_pct": 87.0,
+        "total_paid": 398402839.2900002,
+        "total_claims": 6356829
+      },
+      {
+        "npi": "1205822236",
+        "name": "Yale University",
+        "specialty": "Anesthesiology",
+        "city": "NEW HAVEN",
+        "state": "CT",
+        "entity_type": "",
+        "num_servicing": 2723,
+        "proxy_pct": 100.0,
+        "total_paid": 137026667.8600001,
+        "total_claims": 4034511
+      },
+      {
+        "npi": "1235226531",
+        "name": "Permanente Medical Group Inc",
+        "specialty": "Internal Medicine",
+        "city": "RICHMOND",
+        "state": "CA",
+        "entity_type": "",
+        "num_servicing": 2707,
+        "proxy_pct": 99.7,
+        "total_paid": 37818300.089999974,
+        "total_claims": 1612403
+      },
+      {
+        "npi": "1538151428",
+        "name": "Ochsner Clinic Llc",
+        "specialty": "General Practice",
+        "city": "NEW ORLEANS",
+        "state": "LA",
+        "entity_type": "",
+        "num_servicing": 2435,
+        "proxy_pct": 99.5,
+        "total_paid": 152466937.4100001,
+        "total_claims": 5935206
+      }
+    ]
+  },
+  "signal_3_extreme_cost": {
+    "title": "Extreme Cost-Per-Claim Providers",
+    "provider_count": 452,
+    "total_paid": 6054944120.010001,
+    "median_ppc": 36.33,
+    "threshold_ppc": 3861.33,
+    "providers": [
+      {
+        "npi": "1063436723",
+        "name": "Wall Residences, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 5383.28,
+        "median_multiple": 148,
+        "total_paid": 481636325.6700003,
+        "total_claims": 89469,
+        "beneficiaries": 69770
+      },
+      {
+        "npi": "1104986017",
+        "name": "Lutheran Family Services Of Virginia, Inc.",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 5996.57,
+        "median_multiple": 165,
+        "total_paid": 194342716.42000023,
+        "total_claims": 32409,
+        "beneficiaries": 30752
+      },
+      {
+        "npi": "1073608998",
+        "name": "Orsini Pharmaceutical Services, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 6303.94,
+        "median_multiple": 174,
+        "total_paid": 187472847.16000006,
+        "total_claims": 29739,
+        "beneficiaries": 16286
+      },
+      {
+        "npi": "1194020370",
+        "name": "Community Alternatives Virginia, Inc.",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 7534.09,
+        "median_multiple": 207,
+        "total_paid": 172726465.6800001,
+        "total_claims": 22926,
+        "beneficiaries": 21601
+      },
+      {
+        "npi": "1750304044",
+        "name": "Keystone Continuum, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 8116.51,
+        "median_multiple": 223,
+        "total_paid": 123728018.35000008,
+        "total_claims": 15244,
+        "beneficiaries": 14619
+      },
+      {
+        "npi": "1023678240",
+        "name": "Washington Institute For Coagulation",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 12748.55,
+        "median_multiple": 351,
+        "total_paid": 117018910.65999997,
+        "total_claims": 9179,
+        "beneficiaries": 6783
+      },
+      {
+        "npi": "1255617569",
+        "name": "Novocure Inc.",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 7653.5,
+        "median_multiple": 211,
+        "total_paid": 113057565.54,
+        "total_claims": 14772,
+        "beneficiaries": 11555
+      },
+      {
+        "npi": "1124595764",
+        "name": "Safe Residential Care, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 11602.23,
+        "median_multiple": 319,
+        "total_paid": 94639426.57999997,
+        "total_claims": 8157,
+        "beneficiaries": 3236
+      },
+      {
+        "npi": "1487187704",
+        "name": "Youth Opportunity Investments, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 5914.31,
+        "median_multiple": 163,
+        "total_paid": 88809310.91,
+        "total_claims": 15016,
+        "beneficiaries": 11908
+      },
+      {
+        "npi": "1003813718",
+        "name": "Seasons Hospice & Palliative Care Of Maryland, Llc",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "paid_per_claim": 4453.15,
+        "median_multiple": 123,
+        "total_paid": 84921535.22000003,
+        "total_claims": 19070,
+        "beneficiaries": 13149
+      }
+    ]
+  },
+  "signal_4_concentration": {
+    "title": "Suspicious Procedure Concentration",
+    "provider_count": 25886,
+    "total_paid": 144085372690.38,
+    "pct_of_all": 13.2,
+    "providers": [
+      {
+        "npi": "1518098359",
+        "name": "Stavros Center For Independent Living, Inc.",
+        "specialty": "Case Management",
+        "city": "AMHERST",
+        "state": "MA",
+        "entity_type": "",
+        "herfindahl": 0.99,
+        "unique_codes": 2,
+        "total_paid": 1037216238.4000001,
+        "total_claims": 11206578
+      },
+      {
+        "npi": "1932341898",
+        "name": "Mains'L Florida, Inc.",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 2,
+        "total_paid": 996801121.5399997,
+        "total_claims": 306131
+      },
+      {
+        "npi": "1124304621",
+        "name": "Public Partnerships-Colorado, Inc.",
+        "specialty": "Supports Brokerage",
+        "city": "BOSTON",
+        "state": "MA",
+        "entity_type": "",
+        "herfindahl": 0.95,
+        "unique_codes": 2,
+        "total_paid": 887501813.4099997,
+        "total_claims": 5599208
+      },
+      {
+        "npi": "1124494059",
+        "name": "Tennessee Department Of Children'S Services",
+        "specialty": "Public Health or Welfare",
+        "city": "NASHVILLE",
+        "state": "TN",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 1,
+        "total_paid": 780976224.27,
+        "total_claims": 910831
+      },
+      {
+        "npi": "1063812105",
+        "name": "Abi Fi Corp",
+        "specialty": "Home Health",
+        "city": "FLUSHING",
+        "state": "NY",
+        "entity_type": "",
+        "herfindahl": 0.97,
+        "unique_codes": 3,
+        "total_paid": 714231712.5399998,
+        "total_claims": 5318854
+      },
+      {
+        "npi": "1245414721",
+        "name": "Caregiver Homes Of Massachusetts, Inc",
+        "specialty": "Case Management",
+        "city": "AUBURN",
+        "state": "MA",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 2,
+        "total_paid": 598860245.02,
+        "total_claims": 7464255
+      },
+      {
+        "npi": "1508025370",
+        "name": "Amazing Home Care Services Llc",
+        "specialty": "Home Health",
+        "city": "BRONX",
+        "state": "NY",
+        "entity_type": "",
+        "herfindahl": 0.92,
+        "unique_codes": 3,
+        "total_paid": 576959418.1100004,
+        "total_claims": 3902694
+      },
+      {
+        "npi": "1164535274",
+        "name": "Zoll Services Llc",
+        "specialty": "Durable Medical Equipment & Medical Supplies",
+        "city": "PITTSBURGH",
+        "state": "PA",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 1,
+        "total_paid": 503987183.9199999,
+        "total_claims": 477988
+      },
+      {
+        "npi": "1073730347",
+        "name": "Ma-Department Of Social Services-Rehab",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 1,
+        "total_paid": 490725902.5100001,
+        "total_claims": 225775
+      },
+      {
+        "npi": "1467832584",
+        "name": "Marks Home Care Agency Of Ny, Inc",
+        "specialty": "Home Health",
+        "city": "REGO PARK",
+        "state": "NY",
+        "entity_type": "",
+        "herfindahl": 1.0,
+        "unique_codes": 1,
+        "total_paid": 442602790.5100002,
+        "total_claims": 3279635
+      }
+    ]
+  },
+  "signal_5_volatility": {
+    "title": "Extreme Billing Volatility",
+    "provider_count": 893,
+    "total_paid": 2472280303.24,
+    "median_cv": 0.28,
+    "providers": [
+      {
+        "npi": "1801231642",
+        "name": "University Of North Carolina Health Care System",
+        "specialty": "Pharmacy, Community/Retail Pharmacy",
+        "city": "MORRISVILLE",
+        "state": "NC",
+        "entity_type": "",
+        "cv_ppc": 9.0,
+        "max_min_ratio": 130,
+        "months_active": 84,
+        "total_paid": 71215.33,
+        "total_claims": 39489
+      },
+      {
+        "npi": "1558752857",
+        "name": "Bay Area Community Services, Inc.",
+        "specialty": "Counselor, Mental Health",
+        "city": "OAKLAND",
+        "state": "CA",
+        "entity_type": "",
+        "cv_ppc": 6.6,
+        "max_min_ratio": 1,
+        "months_active": 44,
+        "total_paid": 58308.0,
+        "total_claims": 6771
+      },
+      {
+        "npi": "1063482735",
+        "name": "Uhs Of Benton, Llc",
+        "specialty": "Psychiatric Hospital",
+        "city": "BENTON",
+        "state": "AR",
+        "entity_type": "",
+        "cv_ppc": 6.5,
+        "max_min_ratio": 39645,
+        "months_active": 44,
+        "total_paid": 112487.78999999998,
+        "total_claims": 4774
+      },
+      {
+        "npi": "1457802324",
+        "name": "Usrc West Oahu, Llc",
+        "specialty": "Clinic/Center, End-Stage Renal Disease (ESRD) Treatment",
+        "city": "KAPOLEI",
+        "state": "HI",
+        "entity_type": "",
+        "cv_ppc": 6.2,
+        "max_min_ratio": 1956,
+        "months_active": 80,
+        "total_paid": 2302720.8099999996,
+        "total_claims": 69140
+      },
+      {
+        "npi": "1518995109",
+        "name": "Children'S Dental Surgery Center, Inc",
+        "specialty": "Clinic/Center, Ambulatory Surgical",
+        "city": "SANTA ANA",
+        "state": "CA",
+        "entity_type": "",
+        "cv_ppc": 6.2,
+        "max_min_ratio": 3022,
+        "months_active": 61,
+        "total_paid": 111830.61999999998,
+        "total_claims": 26914
+      },
+      {
+        "npi": "1407271430",
+        "name": "Wildwood Healthcare, Inc.",
+        "specialty": "Skilled Nursing Facility",
+        "city": "PUYALLUP",
+        "state": "WA",
+        "entity_type": "",
+        "cv_ppc": 5.9,
+        "max_min_ratio": 56085,
+        "months_active": 81,
+        "total_paid": 2259785.7499999995,
+        "total_claims": 123367
+      },
+      {
+        "npi": "1306299938",
+        "name": "Preferred Health Management Llc",
+        "specialty": "Specialist",
+        "city": "MIAMI",
+        "state": "FL",
+        "entity_type": "",
+        "cv_ppc": 5.4,
+        "max_min_ratio": 1631,
+        "months_active": 70,
+        "total_paid": 607454.55,
+        "total_claims": 44526
+      },
+      {
+        "npi": "1467464917",
+        "name": "Physicians Stat Lab Inc.",
+        "specialty": "Clinical Medical Laboratory",
+        "city": "CLERMONT",
+        "state": "FL",
+        "entity_type": "",
+        "cv_ppc": 5.3,
+        "max_min_ratio": 415630,
+        "months_active": 74,
+        "total_paid": 98916.86999999997,
+        "total_claims": 154240
+      },
+      {
+        "npi": "1942518865",
+        "name": "Passages Family Support A Nonprofit Corporation",
+        "specialty": "Community/Behavioral Health",
+        "city": "SPOKANE",
+        "state": "WA",
+        "entity_type": "",
+        "cv_ppc": 5.3,
+        "max_min_ratio": 5388,
+        "months_active": 82,
+        "total_paid": 764647.26,
+        "total_claims": 55434
+      },
+      {
+        "npi": "1356746762",
+        "name": "Telecare Mental Health Services Of Arizona, Inc",
+        "specialty": "Clinic/Center, Mental Health (Including Community Mental Health Center)",
+        "city": "CASA GRANDE",
+        "state": "AZ",
+        "entity_type": "",
+        "cv_ppc": 5.3,
+        "max_min_ratio": 1,
+        "months_active": 57,
+        "total_paid": 105913.41999999998,
+        "total_claims": 24250
+      }
+    ]
+  },
+  "benford": {
+    "digits": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "observed": [
+      31.42,
+      17.42,
+      11.99,
+      9.26,
+      7.63,
+      6.57,
+      5.79,
+      5.18,
+      4.74
+    ],
+    "expected": [
+      30.1,
+      17.61,
+      12.49,
+      9.69,
+      7.92,
+      6.69,
+      5.8,
+      5.12,
+      4.58
+    ],
+    "deviation": [
+      1.32,
+      -0.19,
+      -0.51,
+      -0.43,
+      -0.29,
+      -0.12,
+      -0.01,
+      0.06,
+      0.17
+    ],
+    "chi_sq": 0.12,
+    "max_dev": 1.32
+  },
+  "multi_signal": {
+    "total_flagged": 10037,
+    "three_plus": 111,
+    "total_paid": 151339748102.51,
+    "pct_of_all": 13.8,
+    "providers": [
+      {
+        "npi": "1679640627",
+        "name": "Alexian Brothers Community Services Of Tennessee",
+        "specialty": "PACE Provider Organization",
+        "city": "CHATTANOOGA",
+        "state": "TN",
+        "entity_type": "",
+        "count": 4,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes",
+          "Volatile Billing"
+        ],
+        "paid": 29.23
+      },
+      {
+        "npi": "1730935222",
+        "name": "Summitstone Health Partners",
+        "specialty": "Pharmacy, Community/Retail Pharmacy",
+        "city": "FORT COLLINS",
+        "state": "CO",
+        "entity_type": "",
+        "count": 4,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes",
+          "Volatile Billing"
+        ],
+        "paid": 2.1
+      },
+      {
+        "npi": "1407909930",
+        "name": "NPI 1407909930",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 95656297.45000003
+      },
+      {
+        "npi": "1679842322",
+        "name": "NPI 1679842322",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 55857200.959999986
+      },
+      {
+        "npi": "1497819510",
+        "name": "NPI 1497819510",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 50086200.46000004
+      },
+      {
+        "npi": "1427453711",
+        "name": "NPI 1427453711",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 46750674.61
+      },
+      {
+        "npi": "1720123888",
+        "name": "NPI 1720123888",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 38590694.890000015
+      },
+      {
+        "npi": "1750710117",
+        "name": "NPI 1750710117",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 17717573.750000007
+      },
+      {
+        "npi": "1528147782",
+        "name": "NPI 1528147782",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 12045445.860000003
+      },
+      {
+        "npi": "1609256122",
+        "name": "NPI 1609256122",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 10260284.970000006
+      },
+      {
+        "npi": "1770512741",
+        "name": "NPI 1770512741",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Proxy Billing",
+          "Extreme $/Claim",
+          "Concentrated Codes"
+        ],
+        "paid": 5575474.07
+      },
+      {
+        "npi": "1386706919",
+        "name": "NPI 1386706919",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 4701608.540000003
+      },
+      {
+        "npi": "1326093090",
+        "name": "NPI 1326093090",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 3987202.120000001
+      },
+      {
+        "npi": "1245371061",
+        "name": "Center For Elders Independence",
+        "specialty": "PACE Provider Organization",
+        "city": "OAKLAND",
+        "state": "CA",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Concentrated Codes",
+          "Volatile Billing"
+        ],
+        "paid": 3269491.5300000007
+      },
+      {
+        "npi": "1891892535",
+        "name": "NPI 1891892535",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 3266762.07
+      },
+      {
+        "npi": "1962814103",
+        "name": "NPI 1962814103",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Concentrated Codes",
+          "Volatile Billing"
+        ],
+        "paid": 3227715.28
+      },
+      {
+        "npi": "1467850206",
+        "name": "NPI 1467850206",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Concentrated Codes"
+        ],
+        "paid": 1953221.0299999998
+      },
+      {
+        "npi": "1417361411",
+        "name": "NPI 1417361411",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 1680009.9099999997
+      },
+      {
+        "npi": "1508883307",
+        "name": "NPI 1508883307",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 672827.4200000002
+      },
+      {
+        "npi": "1538574660",
+        "name": "NPI 1538574660",
+        "specialty": "",
+        "city": "",
+        "state": "",
+        "entity_type": "",
+        "count": 3,
+        "flags": [
+          "Impossible Volume",
+          "Proxy Billing",
+          "Volatile Billing"
+        ],
+        "paid": 604773.4899999999
+      }
+    ]
+  }
+}

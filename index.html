@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicaid Fraud Signals — $1.09 Trillion Under the Microscope</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #0b0e11;
+            --surface: #151a21;
+            --surface2: #1c222b;
+            --border: #2a3140;
+            --text: #e2e8f0;
+            --muted: #8892a4;
+            --accent: #f43f5e;
+            --accent2: #fb923c;
+            --accent3: #a78bfa;
+            --accent4: #38bdf8;
+            --accent5: #34d399;
+            --green: #22c55e;
+            --red: #ef4444;
+            --gold: #eab308;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent4);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: none;
+            padding: 40px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(244, 63, 94, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 40px;
+        }
+
+        .hero .dataset-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .hero .dataset-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Stat cards */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        /* Signal sections */
+        .signal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .signal-num {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .signal-num.s1 {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .signal-num.s2 {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+        }
+
+        .signal-num.s3 {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+        }
+
+        .signal-num.s4 {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        }
+
+        .signal-num.s5 {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .signal-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .signal-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        .why-box {
+            background: rgba(244, 63, 94, 0.06);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+            font-size: 0.95rem;
+        }
+
+        .why-box strong {
+            color: var(--accent);
+        }
+
+        .context-box {
+            background: rgba(56, 189, 248, 0.06);
+            border-left: 3px solid var(--accent4);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+            font-size: 0.95rem;
+        }
+
+        .context-box strong {
+            color: var(--accent4);
+        }
+
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .kpi {
+            background: var(--surface2);
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+
+        .kpi .v {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .kpi .l {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 2px;
+        }
+
+        .kpi.danger .v {
+            color: var(--accent);
+        }
+
+        .kpi.warn .v {
+            color: var(--accent2);
+        }
+
+        .kpi.info .v {
+            color: var(--accent4);
+        }
+
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        thead {
+            background: var(--surface2);
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.82rem;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .badge.red {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        .badge.orange {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+        }
+
+        .badge.purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+        }
+
+        .badge.blue {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+        }
+
+        .badge.green {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        /* Benford chart */
+        .chart-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            max-width: 700px;
+        }
+
+        /* Multi-signal Section */
+        .overlap-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 768px) {
+            .overlap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .overlap-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .overlap-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .overlap-meta {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        footer .disclaimer {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        /* Scroll animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NPI link */
+        .npi-link {
+            color: var(--accent4);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ─────────── HERO ─────────── -->
+    <section class="hero">
+        <div class="container">
+            <div class="dataset-badge"><span class="dot"></span> Live Analysis — 227M Medicaid Claims</div>
+            <h1>Where Did <span class="highlight">$1.09 Trillion</span><br>in Medicaid Money Go?</h1>
+            <p class="subtitle">
+                We ran 7 behavioral fraud-detection algorithms across every Medicaid provider claim
+                from 2018–2024. The patterns we found are alarming.
+            </p>
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="value">$1.09T</div>
+                    <div class="label">Total Medicaid Paid</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">617,503</div>
+                    <div class="label">Billing Providers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">18.8B</div>
+                    <div class="label">Total Claims</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value"
+                        style="background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        10,037</div>
+                    <div class="label">Multi-Signal Providers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── SIGNAL 1 ─────────── -->
+    <section id="signal-1" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num s1">1</div>
+                <div>
+                    <div class="signal-title">Impossible Billing Volumes</div>
+                    <div class="signal-desc">Providers filing more claims per month than is physically possible</div>
+                </div>
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v">8,138</div>
+                    <div class="l">Flagged Providers</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v">$502B</div>
+                    <div class="l">Total Paid</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v">45.9%</div>
+                    <div class="l">Of All Medicaid Spending</div>
+                </div>
+                <div class="kpi info">
+                    <div class="v">105,122</div>
+                    <div class="l">Peak Claims/Day (Worst)</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> A single provider billing over 10,000 claims in one month would
+                need to see one patient every <strong>8 seconds</strong> for every working hour of every working
+                day. At 105,122 claims per day, the top provider would need to see <strong>219 patients per
+                    minute</strong>.
+                This is physically impossible for any single entity — it signals either massive organizational billing
+                (like a national lab) or systematic overbilling.
+            </div>
+
+            <div class="context-box">
+                <strong>Important context:</strong> Some providers on this list are large institutional entities
+                (e.g., national laboratories, pharmacy benefit managers) where high volumes are expected.
+                However, even for large entities, claims-per-day rates this extreme warrant closer examination
+                of whether each claim represents a genuinely distinct service.
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th>Peak Claims/Month</th>
+                            <th>Claims/Day</th>
+                            <th class="right">Total Paid</th>
+                            <th class="right">$/Claim</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-s1"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── SIGNAL 2 ─────────── -->
+    <section id="signal-2" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num s2">2</div>
+                <div>
+                    <div class="signal-title">Billing Mills & Proxy Networks</div>
+                    <div class="signal-desc">One NPI billing on behalf of thousands of other providers</div>
+                </div>
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v">41,054</div>
+                    <div class="l">Pure Proxy Billers</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v">$173B</div>
+                    <div class="l">Proxy Billing Total</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v">15.8%</div>
+                    <div class="l">Of All Medicaid Spending</div>
+                </div>
+                <div class="kpi info">
+                    <div class="v">5,746</div>
+                    <div class="l">Most Servicing NPIs Under One Biller</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> When one billing NPI submits claims for thousands of different
+                servicing providers, it creates an opaque layer between the actual service provider and the
+                payer. This structure — common in "billing mills" — can be used to submit claims for services
+                never rendered, inflate volumes, or obscure who is actually treating patients. <strong>$173
+                    billion</strong>
+                passed through pure proxy billers whose billing NPI never matched their servicing NPI.
+            </div>
+
+            <div class="context-box">
+                <strong>Important context:</strong> Some legitimate entities (hospital systems, large group
+                practices) bill centrally under one NPI for many physicians. The Cleveland Clinic, for example,
+                appears here because it bills for ~5,700 doctors. However, the sheer dollar volume flowing
+                through proxy channels demands transparency audits.
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th>Servicing NPIs</th>
+                            <th>Proxy %</th>
+                            <th class="right">Total Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-s2"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── SIGNAL 3 ─────────── -->
+    <section id="signal-3" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num s3">3</div>
+                <div>
+                    <div class="signal-title">Extreme Cost-Per-Claim</div>
+                    <div class="signal-desc">Providers charging orders of magnitude more per claim than the median</div>
+                </div>
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v">452</div>
+                    <div class="l">Flagged Providers</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v">$6.1B</div>
+                    <div class="l">Total Paid</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v">$36.33</div>
+                    <div class="l">Median $/Claim</div>
+                </div>
+                <div class="kpi info">
+                    <div class="v">$3,861</div>
+                    <div class="l">99.9th Percentile Threshold</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> The median Medicaid claim costs <strong>$36.33</strong>.
+                These 452 providers average over <strong>$3,861 per claim</strong> — more than 100x the median.
+                Some charge over $12,000 per claim. While some services are genuinely expensive (residential care,
+                specialty drugs), this extreme deviation suggests potential upcoding, unbundling, or billing for
+                premium services while delivering basic ones.
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th class="right">$/Claim</th>
+                            <th>× Median</th>
+                            <th class="right">Total Paid</th>
+                            <th class="right">Claims</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-s3"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── SIGNAL 4 ─────────── -->
+    <section id="signal-4" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num s4">4</div>
+                <div>
+                    <div class="signal-title">Suspicious Procedure Concentration</div>
+                    <div class="signal-desc">Providers billing almost exclusively one or two procedure codes</div>
+                </div>
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v">25,886</div>
+                    <div class="l">Flagged Providers</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v">$144B</div>
+                    <div class="l">Total Paid</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v">13.2%</div>
+                    <div class="l">Of All Medicaid Spending</div>
+                </div>
+                <div class="kpi info">
+                    <div class="v">HHI > 0.80</div>
+                    <div class="l">Concentration Threshold</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> Legitimate healthcare providers typically bill many different
+                procedure codes reflecting diverse patient needs. A provider that bills 99–100% of their claims
+                under a single HCPCS code has a <strong>Herfindahl-Hirschman Index (HHI) near 1.0</strong> —
+                maximum concentration. This pattern is a hallmark of "service mills" that perform the same
+                procedure repeatedly, sometimes regardless of whether patients actually need it.
+            </div>
+
+            <div class="context-box">
+                <strong>Important context:</strong> Some specializations (e.g., home case management agencies,
+                clinical labs) naturally have limited procedure diversity. However, when combined with high
+                dollar volumes, this becomes a stronger fraud indicator.
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th>HHI</th>
+                            <th>Unique Codes</th>
+                            <th class="right">Total Paid</th>
+                            <th class="right">Claims</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-s4"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── SIGNAL 5 ─────────── -->
+    <section id="signal-5" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num s5">5</div>
+                <div>
+                    <div class="signal-title">Extreme Billing Volatility</div>
+                    <div class="signal-desc">Providers whose cost-per-claim swings wildly month to month</div>
+                </div>
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v">893</div>
+                    <div class="l">Flagged Providers</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v">$2.5B</div>
+                    <div class="l">Total Paid</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v">0.28</div>
+                    <div class="l">Median CV (Normal)</div>
+                </div>
+                <div class="kpi info">
+                    <div class="v">> 2.0 CV</div>
+                    <div class="l">Flag Threshold</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> Legitimate providers have relatively consistent pricing
+                month to month. A Coefficient of Variation (CV) above 2.0 means the standard deviation is
+                <strong>more than double the mean</strong> — their billing is wildly erratic. Some providers
+                show max/min ratios exceeding <strong>100,000×</strong>, meaning their most expensive month
+                was 100,000 times their cheapest. This volatility pattern can indicate intermittent upcoding,
+                testing-the-system behavior, or periodic fraud campaigns.
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th>CV</th>
+                            <th>Max/Min Ratio</th>
+                            <th>Months Active</th>
+                            <th class="right">Total Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-s5"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── BENFORD ─────────── -->
+    <section id="benford" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">B</div>
+                <div>
+                    <div class="signal-title">Benford's Law Analysis</div>
+                    <div class="signal-desc">Do the leading digits of claim amounts follow the expected natural
+                        distribution?</div>
+                </div>
+            </div>
+
+            <div class="why-box" style="border-color: var(--accent3); background: rgba(167,139,250,0.06);">
+                <strong style="color: var(--accent3);">What is Benford's Law?</strong> In naturally occurring
+                financial data, the leading digit "1" should appear about 30% of the time, "2" about 17.6%,
+                and so on. Fabricated or manipulated numbers tend to deviate from this distribution. Forensic
+                accountants use this as a first-pass fraud screen. Large deviations indicate the data may have
+                been artificially constructed.
+            </div>
+
+            <div class="kpi-strip">
+                <div class="kpi" id="benford-chi">
+                    <div class="v">—</div>
+                    <div class="l">Chi-Squared Statistic</div>
+                </div>
+                <div class="kpi" id="benford-dev">
+                    <div class="v">—</div>
+                    <div class="l">Max Deviation</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="benfordChart" height="300"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── MULTI-SIGNAL ─────────── -->
+    <section id="multi-signal" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num"
+                    style="background: linear-gradient(135deg, #ef4444, #f97316, #a855f7); background-size: 200% 200%; animation: gradient-shift 3s ease infinite;">
+                    ⚠</div>
+                <div>
+                    <div class="signal-title">Multi-Signal Overlap: The Highest-Risk Providers</div>
+                    <div class="signal-desc">Providers flagged by 2 or more independent fraud signals</div>
+                </div>
+            </div>
+            <style>
+                @keyframes gradient-shift {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+
+                    50% {
+                        background-position: 100% 50%;
+                    }
+
+                    100% {
+                        background-position: 0% 50%;
+                    }
+                }
+            </style>
+
+            <div class="kpi-strip">
+                <div class="kpi danger">
+                    <div class="v" id="ms-total">—</div>
+                    <div class="l">Providers Flagged 2+</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="v" id="ms-three">—</div>
+                    <div class="l">Providers Flagged 3+</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v" id="ms-paid">—</div>
+                    <div class="l">Total Paid (2+ Signals)</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="v" id="ms-pct">—</div>
+                    <div class="l">% Of All Spending</div>
+                </div>
+            </div>
+
+            <div class="why-box">
+                <strong>Why this matters:</strong> Any single signal could have legitimate explanations.
+                But when the <em>same provider</em> shows impossible volumes <strong>AND</strong> proxy billing
+                <strong>AND</strong> concentrated codes <strong>AND</strong> volatile pricing? The probability
+                of innocence drops exponentially. These multi-signal providers represent the <strong>highest-confidence
+                    fraud candidates</strong> in the entire dataset.
+            </div>
+
+            <div class="overlap-grid" id="multi-cards"></div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>NPI</th>
+                            <th>Location</th>
+                            <th>Signals</th>
+                            <th class="right">Total Paid</th>
+                            <th>Flags</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-multi"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── METHODOLOGY ─────────── -->
+    <section id="methodology" class="fade-in">
+        <div class="container">
+            <div class="signal-header">
+                <div class="signal-num" style="background: linear-gradient(135deg, #64748b, #475569);">M</div>
+                <div>
+                    <div class="signal-title">Methodology</div>
+                    <div class="signal-desc">How these signals were detected</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="overlap-card">
+                    <h3 style="margin-bottom: 8px; font-size: 1rem;">Dataset</h3>
+                    <p style="color: var(--muted); font-size: 0.9rem;">
+                        227 million rows of Medicaid provider spending data from CMS (2018–2024).
+                        Each row contains a billing/servicing NPI pair, HCPCS code, claim month,
+                        beneficiary count, claim count, and total paid amount.
+                    </p>
+                </div>
+                <div class="overlap-card">
+                    <h3 style="margin-bottom: 8px; font-size: 1rem;">7-Signal Risk Model</h3>
+                    <p style="color: var(--muted); font-size: 0.9rem;">
+                        Composite scoring using cost-per-claim (22%), claims-per-beneficiary (14%),
+                        billing volatility/CV (14%), procedure concentration/HHI (12%), cost-per-beneficiary
+                        (12%), proxy billing ratio (10%), and total paid (10%).
+                    </p>
+                </div>
+                <div class="overlap-card">
+                    <h3 style="margin-bottom: 8px; font-size: 1rem;">Statistical Methods</h3>
+                    <p style="color: var(--muted); font-size: 0.9rem;">
+                        Log-transform IQR for skewed cost distributions, Benford's Law first-digit
+                        analysis, Herfindahl-Hirschman Index for procedure concentration, Coefficient
+                        of Variation for temporal volatility. All computed via DuckDB over Parquet staging.
+                    </p>
+                </div>
+                <div class="overlap-card">
+                    <h3 style="margin-bottom: 8px; font-size: 1rem;">Provider Lookups</h3>
+                    <p style="color: var(--muted); font-size: 0.9rem;">
+                        NPI details resolved from the <a href="https://npiregistry.cms.hhs.gov/" target="_blank">
+                            NPPES NPI Registry</a> (CMS). Provider names, specialties, and locations
+                        are pulled in real time to provide context for each flagged entity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── FOOTER ─────────── -->
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This analysis identifies <em>statistical anomalies</em>, not
+                confirmed fraud. Many flagged providers may have legitimate explanations for their billing
+                patterns (large institutional entities, specialty services, etc.). This data is intended to
+                inform further investigation, not to make accusations. All data sourced from publicly
+                available CMS Medicaid Provider Utilization data.
+            </div>
+            <p style="margin-top: 16px;">Built with DuckDB, Python, and 7 behavioral fraud-detection algorithms</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load data and render
+        fetch('data.json')
+            .then(r => r.json())
+            .then(render)
+            .catch(e => console.error('Failed to load data:', e));
+
+        function $(amt) {
+            if (Math.abs(amt) >= 1e12) return '$' + (amt / 1e12).toFixed(2) + 'T';
+            if (Math.abs(amt) >= 1e9) return '$' + (amt / 1e9).toFixed(1) + 'B';
+            if (Math.abs(amt) >= 1e6) return '$' + (amt / 1e6).toFixed(1) + 'M';
+            if (Math.abs(amt) >= 1e3) return '$' + (amt / 1e3).toFixed(0) + 'K';
+            return '$' + amt.toFixed(0);
+        }
+        function num(n) { return n.toLocaleString(); }
+        function npiLink(npi) {
+            return `<a class="npi-link" href="https://npiregistry.cms.hhs.gov/provider/${npi}" target="_blank">${npi}</a>`;
+        }
+        function providerName(p) {
+            let s = `<strong>${p.name}</strong>`;
+            if (p.specialty) s += `<br><span style="color:var(--muted);font-size:0.78rem">${p.specialty}</span>`;
+            return s;
+        }
+        function location(p) {
+            if (p.city && p.state) return `${p.city}, ${p.state}`;
+            if (p.state) return p.state;
+            return '—';
+        }
+
+        const flagColors = {
+            'Impossible Volume': 'red',
+            'Proxy Billing': 'orange',
+            'Extreme $/Claim': 'purple',
+            'Concentrated Codes': 'blue',
+            'Volatile Billing': 'green',
+        };
+
+        function render(d) {
+            // Signal 1
+            const t1 = document.getElementById('table-s1');
+            d.signal_1_impossible_volume.providers.forEach(p => {
+                t1.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td class="mono right">${num(p.max_monthly_claims)}</td>
+      <td class="mono right">${num(p.daily_claims)}</td>
+      <td class="mono right">${$(p.total_paid)}</td>
+      <td class="mono right">$${p.paid_per_claim.toFixed(2)}</td>
+    </tr>`;
+            });
+
+            // Signal 2
+            const t2 = document.getElementById('table-s2');
+            d.signal_2_billing_mills.providers.forEach(p => {
+                t2.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td class="mono right">${num(p.num_servicing)}</td>
+      <td class="mono right">${p.proxy_pct}%</td>
+      <td class="mono right">${$(p.total_paid)}</td>
+    </tr>`;
+            });
+
+            // Signal 3
+            const t3 = document.getElementById('table-s3');
+            d.signal_3_extreme_cost.providers.forEach(p => {
+                t3.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td class="mono right">$${num(Math.round(p.paid_per_claim))}</td>
+      <td class="mono right"><span class="badge red">${p.median_multiple}×</span></td>
+      <td class="mono right">${$(p.total_paid)}</td>
+      <td class="mono right">${num(p.total_claims)}</td>
+    </tr>`;
+            });
+
+            // Signal 4
+            const t4 = document.getElementById('table-s4');
+            d.signal_4_concentration.providers.forEach(p => {
+                t4.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td class="mono right">${p.herfindahl.toFixed(2)}</td>
+      <td class="mono right">${p.unique_codes}</td>
+      <td class="mono right">${$(p.total_paid)}</td>
+      <td class="mono right">${num(p.total_claims)}</td>
+    </tr>`;
+            });
+
+            // Signal 5
+            const t5 = document.getElementById('table-s5');
+            d.signal_5_volatility.providers.forEach(p => {
+                t5.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td class="mono right">${p.cv_ppc.toFixed(1)}</td>
+      <td class="mono right">${num(p.max_min_ratio)}×</td>
+      <td class="mono right">${p.months_active}</td>
+      <td class="mono right">${$(p.total_paid)}</td>
+    </tr>`;
+            });
+
+            // Benford
+            const b = d.benford;
+            document.querySelector('#benford-chi .v').textContent = b.chi_sq.toFixed(1);
+            document.querySelector('#benford-dev .v').textContent = b.max_dev.toFixed(2) + '%';
+            new Chart(document.getElementById('benfordChart'), {
+                type: 'bar',
+                data: {
+                    labels: b.digits,
+                    datasets: [
+                        {
+                            label: 'Observed %',
+                            data: b.observed,
+                            backgroundColor: 'rgba(244, 63, 94, 0.7)',
+                            borderColor: 'rgba(244, 63, 94, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                        },
+                        {
+                            label: 'Expected (Benford)',
+                            data: b.expected,
+                            backgroundColor: 'rgba(56, 189, 248, 0.3)',
+                            borderColor: 'rgba(56, 189, 248, 0.8)',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#8892a4' } },
+                        title: {
+                            display: true,
+                            text: 'First-Digit Distribution: Observed vs. Benford\'s Law',
+                            color: '#e2e8f0',
+                            font: { size: 14, weight: '600' }
+                        }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#8892a4' }, grid: { color: 'rgba(42,49,64,0.5)' } },
+                        y: {
+                            ticks: { color: '#8892a4', callback: v => v + '%' },
+                            grid: { color: 'rgba(42,49,64,0.5)' },
+                            title: { display: true, text: 'Frequency (%)', color: '#8892a4' }
+                        }
+                    }
+                }
+            });
+
+            // Multi-signal
+            const ms = d.multi_signal;
+            document.getElementById('ms-total').textContent = num(ms.total_flagged);
+            document.getElementById('ms-three').textContent = num(ms.three_plus);
+            document.getElementById('ms-paid').textContent = $(ms.total_paid);
+            document.getElementById('ms-pct').textContent = ms.pct_of_all + '%';
+
+            // Top multi-signal cards (first 6)
+            const cards = document.getElementById('multi-cards');
+            ms.providers.slice(0, 6).forEach(p => {
+                const pills = p.flags.map(f =>
+                    `<span class="badge ${flagColors[f] || 'red'}">${f}</span>`
+                ).join(' ');
+                cards.innerHTML += `<div class="overlap-card">
+      <div class="overlap-name">${p.name}</div>
+      <div class="overlap-meta">${npiLink(p.npi)} · ${location(p)} · ${p.count} signals</div>
+      <div class="pill-row">${pills}</div>
+      <div style="margin-top:10px;color:var(--muted);font-size:0.85rem">Total Paid: ${$(p.paid)}</div>
+    </div>`;
+            });
+
+            // Multi-signal table (all 20)
+            const tm = document.getElementById('table-multi');
+            ms.providers.forEach(p => {
+                const pills = p.flags.map(f =>
+                    `<span class="badge ${flagColors[f] || 'red'}">${f}</span>`
+                ).join(' ');
+                tm.innerHTML += `<tr>
+      <td>${providerName(p)}</td>
+      <td>${npiLink(p.npi)}</td>
+      <td>${location(p)}</td>
+      <td class="mono right">${p.count}</td>
+      <td class="mono right">${$(p.paid)}</td>
+      <td><div class="pill-row">${pills}</div></td>
+    </tr>`;
+            });
+        }
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
