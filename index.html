@@ -990,7 +990,7 @@
             if (p.specialty) s += `<br><span style="color:var(--muted);font-size:0.78rem">${p.specialty}</span>`;
             return s;
         }
-        function location(p) {
+        function fmtLocation(p) {
             if (p.city && p.state) return `${p.city}, ${p.state}`;
             if (p.state) return p.state;
             return '—';
@@ -1133,7 +1133,7 @@
                 ).join(' ');
                 cards.innerHTML += `<div class="overlap-card">
       <div class="overlap-name">${p.name}</div>
-      <div class="overlap-meta">${npiLink(p.npi)} · ${location(p)} · ${p.count} signals</div>
+      <div class="overlap-meta">${npiLink(p.npi)} · ${fmtLocation(p)} · ${p.count} signals</div>
       <div class="pill-row">${pills}</div>
       <div style="margin-top:10px;color:var(--muted);font-size:0.85rem">Total Paid: ${fmtMoney(p.paid)}</div>
     </div>`;
@@ -1148,7 +1148,7 @@
                 tm.innerHTML += `<tr>
       <td>${providerName(p)}</td>
       <td>${npiLink(p.npi)}</td>
-      <td>${location(p)}</td>
+      <td>${fmtLocation(p)}</td>
       <td class="mono right">${p.count}</td>
       <td class="mono right">${fmtMoney(p.paid)}</td>
       <td><div class="pill-row">${pills}</div></td>
